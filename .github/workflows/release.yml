@@ -19,10 +19,12 @@ jobs:
 
       - name: Building TCET Linux Welcome Tar file
         run: |
-          touch calamares-desktop.tar.gz
-          tar -czf calamares-desktop.tar.gz --exclude=calamares-desktop.tar.gz .
+          cd ..
+          tar -czf calamares-desktop.tar.gz calamares-desktop/
           touch checksum
           sha256sum calamares-desktop.tar.gz > checksum
+          mv checksum calamares-desktop/
+          mv calamares-desktop.tar.gz calamares-desktop/
           
       - name: Delete Previous Latest release
         uses: dev-drprasad/delete-tag-and-release@v1.0
